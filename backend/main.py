@@ -1,9 +1,9 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
-# フロントエンド接続許可
+# フロント接続許可
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -12,12 +12,23 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# 動作確認
 @app.get("/")
 def root():
-    return {"message": "Backend 起動成功！"}
+    return {
+        "message": "Backend 起動成功！"
+    }
 
+# 要約テスト
 @app.get("/summary")
 def summary():
     return {
         "summary": "これはAI要約テストです"
+    }
+
+# ファイルアップロード
+@app.post("/upload")
+async def upload_file(file: UploadFile = File(...)):
+    return {
+        "filename": file.filename
     }
