@@ -6,7 +6,6 @@ export default function Home() {
   const [fileName, setFileName] = useState("");
   const [file, setFile] = useState<File | null>(null);
 
-  // ファイル選択
   const handleFileChange = (
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
@@ -18,7 +17,6 @@ export default function Home() {
     }
   };
 
-  // アップロード
   const handleUpload = async () => {
     if (!file) {
       alert("ファイルを選択してください");
@@ -59,7 +57,7 @@ export default function Home() {
             type="file"
             accept=".mp3,.wav,.m4a"
             onChange={handleFileChange}
-            className="mb-4"
+            className="mb-4 border p-2 bg-white"
           />
 
           <p className="text-gray-700">
